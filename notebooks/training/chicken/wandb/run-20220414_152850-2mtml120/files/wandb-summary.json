@@ -1,0 +1,1 @@
+{"n_samples": 100, "n_accepted": 65, "n_rejected": 135, "acceptance_rate": 0.325, "log_target_func": -111664.69261247772, "kinetic_grad_mag": 38.61685605755639, "potential_grad_mag": 490513.24641934125, "H_curr": 108337.21670458245, "U_curr": 106280.26063181437, "K_curr": 2056.956072768083, "_timestamp": 1649942948, "_runtime": 18, "_step": 200, "_wandb": {"runtime": 17}}

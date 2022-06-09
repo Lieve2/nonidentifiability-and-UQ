@@ -1,0 +1,24 @@
+{
+    "os": "Darwin-21.3.0-x86_64-i386-64bit",
+    "python": "3.7.3",
+    "heartbeatAt": "2022-04-13T07:04:08.028577",
+    "startedAt": "2022-04-13T07:04:06.504970",
+    "docker": null,
+    "cpu_count": 12,
+    "cuda": null,
+    "args": [
+        "-f",
+        "/Users/lievegobbels/Library/Jupyter/runtime/kernel-679e7e6d-e8d9-4a34-af96-8eefca654811.json"
+    ],
+    "state": "running",
+    "program": "chicken/training_chicken_hmc.ipynb",
+    "root": "/Users/lievegobbels/PycharmProjects/decomposition-of-uncertainty",
+    "git": {
+        "remote": "https://github.com/Lieve2/decomposition-of-uncertainty.git",
+        "commit": "1ae7e08cc7f5a4eda55bafb16d4805b6e436b442"
+    },
+    "email": "l.j.l.gobbels@student.tue.nl",
+    "host": "imac.home",
+    "username": "lievegobbels",
+    "executable": "/Users/lievegobbels/.local/share/virtualenvs/decomposition-of-uncertainty-uZMjW-bK/bin/python"
+}

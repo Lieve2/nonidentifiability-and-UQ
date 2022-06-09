@@ -1,0 +1,9 @@
+
+Iteration 50 : lower bound = -73112111.63024142, gradient magnitude = 55060352.895780936
+Iteration 100 : lower bound = -54359227.87869297, gradient magnitude = 36043076.468488984
+Saved BBVI state : ../data/chicken_bbvi_state.json .
+Iteration 150 : lower bound = -39300922.015171684, gradient magnitude = 28967554.75583071
+Iteration 200 : lower bound = -30371498.66293727, gradient magnitude = 25339905.74431361
+Saved BBVI state : ../data/chicken_bbvi_state.json .
+Callback failed at step 200.
+	Last dimenion of X is 2 but should correspond to 5 inputs (i.e. features)
