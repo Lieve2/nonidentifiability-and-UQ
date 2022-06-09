@@ -16,7 +16,7 @@ Experiments on two (simplified, 2D) reinforcement learning benchmarks
 - Lunar-lander v2
 
 Each experiment (on each benchmark) is done with five different sampling (uncertainty quantification) models from the pymc3 library,
-namely HMC, NUTS, Metropolis, ADVI, and SVGD. The (main) results of the experiments can be found in the two notebooks in [a link] (https://github.com/Lieve2/nonidentifiability-and-UQ/tree/master/notebooks.md). 
+namely HMC, NUTS, Metropolis, ADVI, and SVGD. The (main) results of the experiments can be found in the two notebooks in [here](https://github.com/Lieve2/nonidentifiability-and-UQ/blob/master/notebooks/chicken_results.ipynb) (Wet-chicken) and [here](https://github.com/Lieve2/nonidentifiability-and-UQ/blob/master/notebooks/lunar_results.ipynb). 
 
 
 #### Implementations of Bayesian models.
