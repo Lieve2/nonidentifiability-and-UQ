@@ -1,4 +1,4 @@
-"""Tests for `utils` package."""
+"""Testing for `utils` package."""
 import numpy as np
 
 from unittest import TestCase, main
