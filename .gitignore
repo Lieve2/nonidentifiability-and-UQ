@@ -44,3 +44,7 @@ venv.bak/
 **/wandb
 .DS_Store
 notebooks/training/d4rl-atari/saved_samples/atari_samples_hmc.npy
+notebooks/training/idata_Cnuts_sol.nc
+lievegobbels
+lievegobbels.pub
+.gitattributes
