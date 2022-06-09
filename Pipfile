@@ -18,6 +18,9 @@ scipy = "*"
 wandb = "*"
 pillow = "*"
 ipdb = "*"
+utils = "*"
+torchvision = "*"
+fitter = "*"
 
 [requires]
 python_version = "3.7"

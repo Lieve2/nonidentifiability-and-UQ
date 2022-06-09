@@ -28,3 +28,6 @@ def gaussian(x, mu=0.0, sigma=1.0):
 def log_gaussian(x, mu=0.0, sigma=1.0):
     """Log PDF of the univariate Gaussian distribution."""
     return - 0.5 * np.log(2*np.pi*sigma**2) - (x-mu)**2/(2*sigma**2)
+
+def log_uniform(low=0, high=1, size=None):
+    return np.exp(np.random.uniform(low, high, size))

@@ -1,6 +1,10 @@
 """
 Implementations of Bayesian models - EDITED FOR PYMC3
 """
+from numpy.random import seed
+seed(1)
+import tensorflow
+tensorflow.random.set_seed(1)
 
 from autograd import numpy as np
 from autograd import grad
@@ -10,6 +14,7 @@ import numpy
 import wandb
 import pymc3 as pm
 import theano.tensor as tt
+from utils.functions import log_gaussian
 
 def myshape(x):
   if((type(x) is np.numpy_boxes.ArrayBox) | (type(x) is numpy.ndarray)):
@@ -441,6 +446,9 @@ class BNN:
         The K outputs will be along the last dimension (with prior dimensions
         matching those of X, i.e. the typical output will be an N-by-K matrix).
         '''
+
+
+
         # Check X dimensions:
         if len(myshape(X)) < 2:
             raise ValueError(f"X should be (at least) 2 dimensional; myshape(X)={myshape(X)}.")
@@ -653,3 +661,4 @@ class BNN_LV(BNN):
         super().fit(X=X_, Y=Y_, *args, **kwargs)
         self.fitting = False  # Restore normal state.
         return
+

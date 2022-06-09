@@ -48,7 +48,7 @@ from autograd import numpy as np
 from autograd import grad
 from autograd.misc.optimizers import adam
 
-from utils.functions import log_gaussian
+from utils.functions import log_gaussian, gaussian
 
 
 class BayesianModel:
@@ -127,9 +127,23 @@ class BayesianModel:
         if len(Z.shape)==2:
             return np.sum( log_gaussian(x=self.Y, mu=mu, sigma=sigma) )
         elif len(Z.shape)==3:
-            return self.sum_over_samples( log_gaussian(x=self.Y, mu=mu, sigma=sigma) )
+            return self.sum_over_samples(log_gaussian(x=self.Y, mu=mu, sigma=sigma) )
         raise NotImplementedError(f"Expects Z to have 2 or 3 dimensions, not {Z.shape}.")
-    
+
+    def likelihood(self, W, Z): #might be incorrect
+        mu = self.nn.forward(X=self.X, weights=W, input_noise=Z)
+        sigma = self.likelihood_stdev
+        if len(Z.shape)==2:
+            return np.sum( gaussian(x=self.Y, mu=mu, sigma=sigma) )
+        elif len(Z.shape)==3:
+            return self.sum_over_samples(gaussian(x=self.Y, mu=mu, sigma=sigma) )
+        raise NotImplementedError(f"Expects Z to have 2 or 3 dimensions, not {Z.shape}.")
+
+    def parameters(self, W, Z): #remove if not working
+        mu = self.nn.forward(X=self.X, weights=W, input_noise=Z)
+        sigma = self.likelihood_stdev
+        return mu #, sigma
+
     def log_posterior(self, W, Z):
         return self.log_prior_weights(W) + self.log_prior_latents(Z) + self.log_likelihood(W, Z)
 
@@ -276,6 +290,8 @@ class SamplerModel:
         self._log_prior = model.log_prior
         self._log_likelihood = model.log_likelihood
         self._log_posterior = model.log_posterior
+        self._parameters = model.parameters #remove if not working
+        self._likelihood = model.likelihood #remove if not working
     
     def stack(self, W, Z):
         if len(Z.shape)==2:
@@ -344,12 +360,24 @@ class SamplerModel:
         # if len(Z.shape)==3:
         #     return self.vectorize(self.model.log_likelihood, W=W, Z=Z)
         return self.model.log_likelihood(W=W, Z=Z)
-    
+
+    def likelihood(self, samples):
+        W, Z = self.unstack(samples)
+        return self.model.likelihood(W=W, Z=Z)
+
+    def parameters(self,samples): #remove if not working
+        W, Z = self.unstack(samples)
+        return self.model.parameters(W=W, Z=Z)
+
     def log_posterior(self, samples):
         W, Z = self.unstack(samples)
         # if len(Z.shape)==3:
         #     return self.vectorize(self.model.log_posterior, W=W, Z=Z)
         return self.model.log_posterior(W=W, Z=Z)
+
+    def ppo(self, samples):
+        for sample in samples:
+            value = min()
 
     def info(self):
         return self.model.info()
@@ -850,7 +878,7 @@ class BNN_LV(BNN):
         Y_:
             The output to perturb with additive noise.
         output_noise:
-            'auto' : Stochasticify is added automatically according to the BNN_LV's parameters.
+            'auto' : Stochasticify is added automatically according to the BNN_LV's samameters.
             'zero' : No noise is added (i.e. leaves the output unchanged).
             [tensor-like object] : Adds user-specified noise.
         """
@@ -918,3 +946,4 @@ class BNN_LV(BNN):
         super().fit(X=X_, Y=Y_, *args, **kwargs)
         self.fitting = False  # Restore normal state.
         return
+
